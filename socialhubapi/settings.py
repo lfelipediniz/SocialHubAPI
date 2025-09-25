@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'codeleap_careers.urls'
+ROOT_URLCONF = 'socialhubapi.urls'
 
 TEMPLATES = [
     {
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'codeleap_careers.wsgi.application'
+WSGI_APPLICATION = 'socialhubapi.wsgi.application'
 
 
 # Database

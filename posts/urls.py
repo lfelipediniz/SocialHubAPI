@@ -28,5 +28,8 @@ urlpatterns = [
     # shares
     path('<int:post_id>/share/', views.post_share, name='post-share'),
     path('<int:post_id>/shares/', views.post_shares_list, name='post-shares-list'),
+    
+    # post sharing system
+    path('<int:post_id>/share-post/', views.post_share_create, name='post-share-create'),
 ]
 
