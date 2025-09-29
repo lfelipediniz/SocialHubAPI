@@ -17,6 +17,8 @@ def run_migrations():
             
             print(f"DB_HOST: {db_host}")
             print(f"DB_USER: {db_user}")
+            print(f"DB_NAME: {os.environ.get('DB_NAME', 'dbsocialhub')}")
+            print(f"DB_PORT: {os.environ.get('DB_PORT', '5432')}")
             print(f"DB_PASSWORD length: {len(db_password)}")
             if db_password:
                 print(f"DB_PASSWORD first char: '{db_password[0]}'")
