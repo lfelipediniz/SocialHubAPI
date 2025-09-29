@@ -96,7 +96,7 @@ if DEBUG:
     }
 else:
     # Production: Use PostgreSQL
-    DATABASE_URL = os.environ.get('DATABASE_URL', '')
+    DATABASE_URL = config('DATABASE_URL', default='')
     
     if DATABASE_URL and DATABASE_URL.startswith('postgresql://'):
         # Parse DATABASE_URL for PostgreSQL
@@ -115,11 +115,11 @@ else:
             DATABASES = {
                 'default': {
                     'ENGINE': 'django.db.backends.postgresql',
-                    'NAME': os.environ.get('DB_NAME', 'dbsocialhub'),
-                    'USER': os.environ.get('DB_USER', 'dbsocialhub_user'),
-                    'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-                    'HOST': os.environ.get('DB_HOST', 'localhost'),
-                    'PORT': os.environ.get('DB_PORT', '5432'),
+                    'NAME': config('DB_NAME', default='dbsocialhub'),
+                    'USER': config('DB_USER', default='dbsocialhub_user'),
+                    'PASSWORD': config('DB_PASSWORD', default=''),
+                    'HOST': config('DB_HOST', default='localhost'),
+                    'PORT': config('DB_PORT', default='5432'),
                     'OPTIONS': {
                         'sslmode': 'require',
                     }
@@ -130,11 +130,11 @@ else:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.postgresql',
-                'NAME': os.environ.get('DB_NAME', 'dbsocialhub'),
-                'USER': os.environ.get('DB_USER', 'dbsocialhub_user'),
-                'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-                'HOST': os.environ.get('DB_HOST', 'localhost'),
-                'PORT': os.environ.get('DB_PORT', '5432'),
+                'NAME': config('DB_NAME', default='dbsocialhub'),
+                'USER': config('DB_USER', default='dbsocialhub_user'),
+                'PASSWORD': config('DB_PASSWORD', default=''),
+                'HOST': config('DB_HOST', default='localhost'),
+                'PORT': config('DB_PORT', default='5432'),
                 'OPTIONS': {
                     'sslmode': 'require',
                 }
@@ -144,7 +144,9 @@ else:
 # Skip database checks during build
 import sys
 if 'collectstatic' in sys.argv or 'migrate' in sys.argv:
-    DATABASES['default']['OPTIONS'] = {'connect_timeout': 1}
+    # Only add connect_timeout for PostgreSQL, not SQLite
+    if DATABASES['default']['ENGINE'] == 'django.db.backends.postgresql':
+        DATABASES['default']['OPTIONS'] = {'connect_timeout': 1}
 
 
 # Password validation

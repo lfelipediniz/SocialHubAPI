@@ -60,7 +60,7 @@ def     post_list(request):
 
 
 @api_view(['POST'])
-@permission_classes([permissions.IsAuthenticated])
+@permission_classes([permissions.AllowAny])
 def post_create(request):
     # post /careers/create/ - create post
     serializer = PostCreateSerializer(data=request.data, context={'request': request})

@@ -60,15 +60,23 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class PostCreateSerializer(serializers.ModelSerializer):
-    # serializer for creating new posts, uses authenticated user
+    # serializer for creating new posts, uses username from request data
+    
+    username = serializers.CharField(write_only=True)
     
     class Meta:
         model = Post
-        fields = ['title', 'content']
+        fields = ['username', 'title', 'content']
     
     def create(self, validated_data):
-        # use authenticated user from request
-        validated_data['user'] = self.context['request'].user
+        # get or create user by username
+        from users.models import User
+        username = validated_data.pop('username')
+        user, created = User.objects.get_or_create(
+            username=username,
+            defaults={'email': f'{username}@example.com'}  # temporary email
+        )
+        validated_data['user'] = user
         return super().create(validated_data)
     
     def validate_title(self, value):
