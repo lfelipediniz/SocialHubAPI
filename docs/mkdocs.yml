@@ -73,4 +73,3 @@ nav:
     - Social Features: api/social.md
   - Authentication: auth/index.md
   - Quick Start: quickstart.md
-  - Development: development.md

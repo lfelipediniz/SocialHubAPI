@@ -10,7 +10,6 @@ docs/
 ├── docs/                   # Documentation content
 │   ├── index.md           # Homepage
 │   ├── quickstart.md      # Quick start guide
-│   ├── development.md     # Development guide
 │   ├── api/               # API documentation
 │   │   ├── posts.md       # Posts API
 │   │   ├── users.md       # Users API
@@ -94,8 +93,7 @@ mkdocs gh-deploy
 - **API Reference**: Complete API documentation
 - **Authentication**: Security and auth guides
 - **Quick Start**: Getting started guide
-- **Development**: Developer resources
-
+- 
 ### Search
 - Full-text search across all documentation
 - Highlighted search results

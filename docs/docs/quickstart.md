@@ -120,7 +120,6 @@ curl -X POST "http://localhost:8000/careers/1/comment/" \
 
 1. **Explore the API**: Check out the [API Reference](api/routes.md) for all available endpoints
 2. **Authentication**: Learn about [JWT Authentication](auth/index.md) 
-3. **Development**: See [Development Guide](development.md) for advanced setup
 
 ## API Documentation
 
