@@ -39,9 +39,6 @@ python manage.py runserver 0.0.0.0:8000
 
 * [Authentication System](auth/index.md) - Guide for JWT token usage
 
-### Guides
-
-* 
 ## Configuration
 
 ### JWT Authentication
