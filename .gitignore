@@ -207,3 +207,7 @@ marimo/_lsp/
 __marimo__/
 
 frontend/
+
+# Credentials and sensitive files
+env.production
+.env.local

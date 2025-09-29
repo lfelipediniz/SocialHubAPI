@@ -4,7 +4,7 @@ A complete social API with CRUD operations for posts and social interactions inc
 
 ## Documentation
 
-https://sociahub-docs.vercel.app/
+https://socialhub-docs.vercel.app
 
 ## Quick Setup
 

@@ -5,3 +5,5 @@ django-filter==23.5
 drf-spectacular==0.27.0
 psycopg2-binary==2.9.9
 python-decouple==3.8
+dj-database-url==2.1.0
+gunicorn==21.2.0
