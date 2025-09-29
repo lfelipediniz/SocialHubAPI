@@ -10,11 +10,10 @@ def run_migrations():
         
         # Check if we're in production
         if os.environ.get('DJANGO_DEBUG', 'True').lower() == 'false':
-            # Debug environment variables
-            from decouple import config
-            db_host = config('DB_HOST', default='localhost')
-            db_user = config('DB_USER', default='dbsocialhub_user')
-            db_password = config('DB_PASSWORD', default='')
+            # Debug environment variables - use os.environ directly in production
+            db_host = os.environ.get('DB_HOST', 'localhost')
+            db_user = os.environ.get('DB_USER', 'dbsocialhub_user')
+            db_password = os.environ.get('DB_PASSWORD', '')
             
             print(f"DB_HOST: {db_host}")
             print(f"DB_USER: {db_user}")
