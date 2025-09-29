@@ -9,7 +9,7 @@ Get up and running with SocialHubAPI:
 ```bash
 # activate virtual environment
 source venv/bin/activate
-````
+```
 
 ```bash
 # install dependencies
