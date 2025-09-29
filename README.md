@@ -4,11 +4,12 @@ A complete social API with CRUD operations for posts and social interactions inc
 
 ## Documentation
 
-https://socialhub-docs.vercel.app
+[https://socialhub-docs.vercel.app](https://socialhub-docs.vercel.app)
 
 ## Quick Setup
 
 ### Authentication
+
 The API uses JWT authentication by default. No additional configuration is required.
 
 ### Installation
@@ -16,7 +17,7 @@ The API uses JWT authentication by default. No additional configuration is requi
 ```bash
 # activate virtual environment
 source venv/bin/activate
-````
+```
 
 ```bash
 # install dependencies
@@ -32,6 +33,15 @@ python manage.py migrate
 # start server
 python manage.py runserver 0.0.0.0:8000
 ```
+
+---
+
+## Test Deployment (Render)
+
+The backend is temporarily deployed on Render using the free tier for testing purposes.
+You can test the live API while it's available using the following base URL:
+
+👉 **[https://socialhubapi-rcs3.onrender.com](https://socialhubapi-rcs3.onrender.com)**
 
 ---
 
