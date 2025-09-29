@@ -105,6 +105,10 @@ else:
             DATABASES = {
                 'default': dj_database_url.parse(DATABASE_URL)
             }
+            # Add SSL for Render PostgreSQL
+            DATABASES['default']['OPTIONS'] = {
+                'sslmode': 'require',
+            }
         except Exception as e:
             print(f"Error parsing DATABASE_URL: {e}")
             # Fallback to individual settings
@@ -116,6 +120,9 @@ else:
                     'PASSWORD': config('DB_PASSWORD', default=''),
                     'HOST': config('DB_HOST', default='localhost'),
                     'PORT': config('DB_PORT', default='5432'),
+                    'OPTIONS': {
+                        'sslmode': 'require',
+                    }
                 }
             }
     else:
@@ -128,6 +135,9 @@ else:
                 'PASSWORD': config('DB_PASSWORD', default=''),
                 'HOST': config('DB_HOST', default='localhost'),
                 'PORT': config('DB_PORT', default='5432'),
+                'OPTIONS': {
+                    'sslmode': 'require',
+                }
             }
         }
 
