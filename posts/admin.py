@@ -1,16 +1,5 @@
 from django.contrib import admin
-from .models import User, Post, Like, Comment, Share
-
-
-@admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    """Admin interface for User model."""
-    
-    list_display = ['id', 'username', 'created_datetime']
-    list_filter = ['created_datetime']
-    search_fields = ['username']
-    readonly_fields = ['id', 'created_datetime']
-    ordering = ['username']
+from .models import Post, Like, Comment, Share
 
 
 @admin.register(Post)

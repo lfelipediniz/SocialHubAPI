@@ -20,6 +20,7 @@ urlpatterns = [
     path('<int:post_id>/like/', views.post_like, name='post-like'),
     path('<int:post_id>/unlike/', views.post_unlike, name='post-unlike'),
     path('<int:post_id>/likes/', views.post_likes_list, name='post-likes-list'),
+    path('user/<str:username>/liked-posts/', views.user_liked_posts, name='user-liked-posts'),
     
     # comments
     path('<int:post_id>/comment/', views.post_comment, name='post-comment'),
@@ -28,6 +29,7 @@ urlpatterns = [
     # shares
     path('<int:post_id>/share/', views.post_share, name='post-share'),
     path('<int:post_id>/shares/', views.post_shares_list, name='post-shares-list'),
+    path('user/<str:username>/shared-posts/', views.user_shared_posts, name='user-shared-posts'),
     
     # post sharing system
     path('<int:post_id>/share-post/', views.post_share_create, name='post-share-create'),

@@ -2,7 +2,8 @@ from django.test import TestCase
 from django.urls import reverse
 from rest_framework.test import APITestCase
 from rest_framework import status
-from .models import User, Post, Like, Comment, Share
+from .models import Post, Like, Comment, Share
+from users.models import User
 
 
 class UserModelTest(TestCase):
@@ -10,19 +11,19 @@ class UserModelTest(TestCase):
     
     def test_user_creation(self):
         # test basic user creation
-        user = User.objects.create(username="testuser")
+        user = User.objects.create(username="testuser", email="testuser@example.com")
         self.assertEqual(user.username, "testuser")
-        self.assertIsNotNone(user.created_datetime)
+        self.assertIsNotNone(user.created_at)
     
     def test_user_unique_username(self):
         # test username uniqueness constraint
-        User.objects.create(username="uniqueuser")
+        User.objects.create(username="uniqueuser", email="uniqueuser@example.com")
         with self.assertRaises(Exception):
-            User.objects.create(username="uniqueuser")
+            User.objects.create(username="uniqueuser", email="uniqueuser2@example.com")
     
     def test_user_str_representation(self):
         # test user string representation
-        user = User.objects.create(username="testuser")
+        user = User.objects.create(username="testuser", email="testuser@example.com")
         self.assertEqual(str(user), "testuser")
 
 
@@ -31,7 +32,7 @@ class PostModelTest(TestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
     
     def test_post_creation(self):
         # test basic post creation
@@ -86,7 +87,7 @@ class PostAPITest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Test Post",
@@ -239,7 +240,7 @@ class LikeAPITest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Test Post",
@@ -259,7 +260,7 @@ class LikeAPITest(APITestCase):
     
     def test_like_post_duplicate(self):
         # test liking same post twice
-        liker_user = User.objects.create(username="liker")
+        liker_user = User.objects.create(username="liker", email="liker@example.com")
         Like.objects.create(post=self.post, user=liker_user)
         
         url = reverse('post-like', kwargs={'post_id': self.post.id})
@@ -278,7 +279,7 @@ class LikeAPITest(APITestCase):
     
     def test_unlike_post(self):
         # test unliking a post
-        liker_user = User.objects.create(username="liker")
+        liker_user = User.objects.create(username="liker", email="liker@example.com")
         Like.objects.create(post=self.post, user=liker_user)
         
         url = reverse('post-unlike', kwargs={'post_id': self.post.id})
@@ -300,8 +301,8 @@ class LikeAPITest(APITestCase):
     
     def test_list_post_likes(self):
         # test listing post likes
-        liker1 = User.objects.create(username="liker1")
-        liker2 = User.objects.create(username="liker2")
+        liker1 = User.objects.create(username="liker1", email="liker1@example.com")
+        liker2 = User.objects.create(username="liker2", email="liker2@example.com")
         Like.objects.create(post=self.post, user=liker1)
         Like.objects.create(post=self.post, user=liker2)
         
@@ -317,7 +318,7 @@ class CommentAPITest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Test Post",
@@ -361,8 +362,8 @@ class CommentAPITest(APITestCase):
     
     def test_list_post_comments(self):
         # test listing post comments
-        commenter1 = User.objects.create(username="commenter1")
-        commenter2 = User.objects.create(username="commenter2")
+        commenter1 = User.objects.create(username="commenter1", email="commenter1@example.com")
+        commenter2 = User.objects.create(username="commenter2", email="commenter2@example.com")
         Comment.objects.create(post=self.post, user=commenter1, content="First comment")
         Comment.objects.create(post=self.post, user=commenter2, content="Second comment")
         
@@ -378,7 +379,7 @@ class ShareAPITest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Test Post",
@@ -398,7 +399,7 @@ class ShareAPITest(APITestCase):
     
     def test_share_post_duplicate(self):
         # test sharing same post twice
-        sharer_user = User.objects.create(username="sharer")
+        sharer_user = User.objects.create(username="sharer", email="sharer@example.com")
         Share.objects.create(post=self.post, user=sharer_user)
         
         url = reverse('post-share', kwargs={'post_id': self.post.id})
@@ -409,8 +410,8 @@ class ShareAPITest(APITestCase):
     
     def test_list_post_shares(self):
         # test listing post shares
-        sharer1 = User.objects.create(username="sharer1")
-        sharer2 = User.objects.create(username="sharer2")
+        sharer1 = User.objects.create(username="sharer1", email="sharer1@example.com")
+        sharer2 = User.objects.create(username="sharer2", email="sharer2@example.com")
         Share.objects.create(post=self.post, user=sharer1)
         Share.objects.create(post=self.post, user=sharer2)
         
@@ -426,7 +427,7 @@ class PostSharingAPITest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Original Post",
@@ -465,7 +466,7 @@ class PostSharingAPITest(APITestCase):
     def test_share_shared_post_chain_prevention(self):
         # test sharing a shared post (chain prevention)
         # first create a shared post
-        sharer1 = User.objects.create(username="sharer1")
+        sharer1 = User.objects.create(username="sharer1", email="sharer1@example.com")
         shared_post = Post.objects.create(
             user=sharer1,
             title="Shared: Original Post",
@@ -521,7 +522,7 @@ class EdgeCasesTest(APITestCase):
     
     def setUp(self):
         # setup test data
-        self.user = User.objects.create(username="testuser")
+        self.user = User.objects.create(username="testuser", email="testuser@example.com")
         self.post = Post.objects.create(
             user=self.user,
             title="Test Post",
@@ -602,7 +603,7 @@ class EdgeCasesTest(APITestCase):
     
     def test_cascade_deletion(self):
         # test cascade deletion when user is deleted
-        user = User.objects.create(username="tobedeleted")
+        user = User.objects.create(username="tobedeleted", email="tobedeleted@example.com")
         post = Post.objects.create(user=user, title="Test", content="Test")
         like = Like.objects.create(post=post, user=user)
         comment = Comment.objects.create(post=post, user=user, content="Test comment")
@@ -619,9 +620,9 @@ class EdgeCasesTest(APITestCase):
     
     def test_post_counters_accuracy(self):
         # test that post counters are accurate
-        liker = User.objects.create(username="liker")
-        commenter = User.objects.create(username="commenter")
-        sharer = User.objects.create(username="sharer")
+        liker = User.objects.create(username="liker", email="liker@example.com")
+        commenter = User.objects.create(username="commenter", email="commenter@example.com")
+        sharer = User.objects.create(username="sharer", email="sharer@example.com")
         
         # add interactions
         Like.objects.create(post=self.post, user=liker)

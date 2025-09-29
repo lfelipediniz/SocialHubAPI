@@ -202,3 +202,7 @@ Base path: `/careers/` (with trailing slash)
 - Avoid duplicate files with same functionality
 - Use explicit URLs instead of ViewSets with @action decorators
 - One function per route for better maintainability
+
+### Development Guidelines
+- Do not use emojis in any files
+- Always activate virtual environment before running any commands: `source venv/bin/activate`
