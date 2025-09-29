@@ -131,6 +131,11 @@ else:
             }
         }
 
+# Skip database checks during build
+import sys
+if 'collectstatic' in sys.argv or 'migrate' in sys.argv:
+    DATABASES['default']['OPTIONS'] = {'connect_timeout': 1}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
