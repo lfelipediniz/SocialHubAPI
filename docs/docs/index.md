@@ -30,19 +30,19 @@ python manage.py runserver 0.0.0.0:8000
 
 ### API Reference
 
-* [Posts API](api/posts.md) — CRUD operations for posts and interactions
-* [Users API](api/users.md) — User management, authentication, profiles
-* [Social Features](api/social.md) — Likes, comments, shares, relationships
-* [Routes Overview](api/routes.md) — Complete endpoint list
+* [Posts API](api/posts.md) - CRUD operations for posts and interactions
+* [Users API](api/users.md) - User management, authentication, profiles
+* [Social Features](api/social.md) - Likes, comments, shares, relationships
+* [Routes Overview](api/routes.md) - Complete endpoint list
 
 ### Authentication
 
-* [Authentication System](auth/index.md) — Guide for JWT token usage
+* [Authentication System](auth/index.md) - Guide for JWT token usage
 
 ### Guides
 
-* [Quick Start Guide](quickstart.md) — Simple setup with examples
-* [Development Guide](development.md) — Local setup and best practices
+* [Quick Start Guide](quickstart.md) - Simple setup with examples
+* [Development Guide](development.md) - Local setup and best practices
 
 ## Configuration
 

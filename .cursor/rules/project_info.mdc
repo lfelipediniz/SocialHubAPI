@@ -1,11 +1,11 @@
 ---
-description: High-level context and implementation plan for a simple public CRUD API compatible with CodeLeap careers test. Backend in Django + DRF. No code scaffolding or automatic actions — this file is a guide for you to implement step by step.
+description: High-level context and implementation plan for a simple public CRUD API compatible with CodeLeap careers test. Backend in Django + DRF. No code scaffolding or automatic actions - this file is a guide for you to implement step by step.
 globs:
   - "**/*"
 alwaysApply: true
 ---
 
-# SocialHubAPI Backend — Implementation Plan (Django + DRF)
+# SocialHubAPI Backend - Implementation Plan (Django + DRF)
 
 ## Purpose
 Build a minimal public API that mirrors the behavior and data contract of `https://dev.codeleap.co.uk/careers/`. The API will power a simple posts feed with basic CRUD. No frontend is required here. The plan below defines scope, endpoints, data model, validation, auth rules for edits, pagination, CORS, and deployment expectations.
