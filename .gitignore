@@ -209,5 +209,5 @@ __marimo__/
 frontend/
 
 # Credentials and sensitive files
-env.production
+.env
 .env.local

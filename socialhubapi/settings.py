@@ -96,14 +96,28 @@ if DEBUG:
     }
 else:
     # Production: Use PostgreSQL
-    DATABASE_URL = config('DATABASE_URL')
+    DATABASE_URL = config('DATABASE_URL', default='')
     
-    if DATABASE_URL.startswith('postgresql://'):
+    if DATABASE_URL and DATABASE_URL.startswith('postgresql://'):
         # Parse DATABASE_URL for PostgreSQL
-        import dj_database_url
-        DATABASES = {
-            'default': dj_database_url.parse(DATABASE_URL)
-        }
+        try:
+            import dj_database_url
+            DATABASES = {
+                'default': dj_database_url.parse(DATABASE_URL)
+            }
+        except Exception as e:
+            print(f"Error parsing DATABASE_URL: {e}")
+            # Fallback to individual settings
+            DATABASES = {
+                'default': {
+                    'ENGINE': 'django.db.backends.postgresql',
+                    'NAME': config('DB_NAME', default='dbsocialhub'),
+                    'USER': config('DB_USER', default='dbsocialhub_user'),
+                    'PASSWORD': config('DB_PASSWORD', default=''),
+                    'HOST': config('DB_HOST', default='localhost'),
+                    'PORT': config('DB_PORT', default='5432'),
+                }
+            }
     else:
         # Fallback PostgreSQL configuration
         DATABASES = {
