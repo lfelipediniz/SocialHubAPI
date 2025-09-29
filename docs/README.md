@@ -20,42 +20,6 @@ docs/
 └── site/                  # Built documentation (generated)
 ```
 
-## Development
-
-### Prerequisites
-- Python 3.12+
-- Virtual environment activated
-- MkDocs and Material theme installed
-
-### Setup
-```bash
-# Activate virtual environment
-source ../venv/bin/activate
-
-# Install MkDocs dependencies
-pip install mkdocs mkdocs-material
-
-# Serve documentation locally
-mkdocs serve
-
-# Build documentation
-mkdocs build
-```
-
-### Adding Content
-
-1. **New Pages**: Create `.md` files in the appropriate directory
-2. **Navigation**: Update `mkdocs.yml` to include new pages
-3. **Links**: Use relative paths for internal links
-4. **Images**: Place images in `docs/images/` and reference with `![Alt](images/filename.png)`
-
-### Writing Guidelines
-
-- Use clear, descriptive headings
-- Include code examples with syntax highlighting
-- Add cross-references between related sections
-- Keep content up-to-date with API changes
-- Use consistent formatting and style
 
 ## Configuration
 
@@ -68,11 +32,6 @@ The documentation is configured in `mkdocs.yml` with:
 
 ## Deployment
 
-### Local Development
-```bash
-mkdocs serve
-# Documentation available at http://localhost:8000
-```
 
 ### Production Build
 ```bash

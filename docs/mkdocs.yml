@@ -72,4 +72,3 @@ nav:
     - Users API: api/users.md
     - Social Features: api/social.md
   - Authentication: auth/index.md
-  - Quick Start: quickstart.md
